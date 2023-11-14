@@ -1,0 +1,18 @@
+{{> header}}
+<main>
+    <h1>Libary</h1>
+    {{#if favorites.length}}
+    <ul>
+        {{#each favorites}}
+        <li>
+            <h2>{{title}}</h2>
+            <p>Author: {{author}}</p>
+            <p>Genre: {{genre}}</p>
+            <p>Published Year: {{publicationYear}}</p>
+            <p>Description: {{description}}</p>
+        </li>
+    </ul>
+    {{else}}
+    <p>No books avaliable</p>
+    {{/if}}
+</main>

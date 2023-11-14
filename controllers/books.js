@@ -1,7 +1,7 @@
 const { Books } = require("../models");
 
 async function create(req, res, next) {
-    const { title, author, genre, isbn } = req.body
+    const { title, author, genre, isbn, publicationYear } = req.body
 
     try {
         if (!(title && author && isbn))
@@ -11,7 +11,8 @@ async function create(req, res, next) {
             title,
             author,
             genre,
-            isbn
+            isbn,
+            publicationYear
         })
     } catch (err) {
 

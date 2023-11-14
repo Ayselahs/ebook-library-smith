@@ -15,7 +15,7 @@ const BookSchema = new Schema(
             required: true
         },
         description: String,
-        createdAt: {
+        publicationYear: {
             type: Date,
             default: Date.now
         },
