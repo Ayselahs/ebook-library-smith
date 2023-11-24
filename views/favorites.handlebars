@@ -1,18 +1,20 @@
 {{> header}}
+{{#unless isLoggedIn}}
 <main>
-    <h1>Libary</h1>
-    {{#if favorites.length}}
-    <ul>
-        {{#each favorites}}
-        <li>
-            <h2>{{title}}</h2>
-            <p>Author: {{author}}</p>
-            <p>Genre: {{genre}}</p>
-            <p>Published Year: {{publicationYear}}</p>
-            <p>Description: {{description}}</p>
-        </li>
-    </ul>
+    <h1>Favorites</h1>
+    {{#if books.length}}
+    {{#each books}}
+    <div class="books">
+        <img src="{{this.bookId.picture}} alt=""{{this.bookId.title}}">
+        <p>{{this.bookId.title}} by {{this.bookId.author}}</p>
+        <button>Remove from favorites</button>
+
+    </div>
+    {{/each}}
     {{else}}
-    <p>No books avaliable</p>
+    <p>Your favorites is empty. Start adding books!</p>
+    <a href="/api/explore" class="explore-btn">Explore Now!</a>
     {{/if}}
+
 </main>
+{{/unless}}

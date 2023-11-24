@@ -1,18 +1,20 @@
 {{> header}}
+{{#unless isLoggedIn}}
 <main>
-    <h1>Libary</h1>
-    {{#if books.length}}
-    <ul>
-        {{#each books}}
-        <li>
-            <h2>{{title}}</h2>
-            <p>Author: {{author}}</p>
-            <p>Genre: {{genre}}</p>
-            <p>Published Year: {{publicationYear}}</p>
-            <p>Description: {{description}}</p>
-        </li>
-    </ul>
-    {{else}}
-    <p>No books avaliable</p>
-    {{/if}}
+    <h1>Explorer</h1>
+    <form action="/search" method="get">
+        <label for="search">Search the Google's most comprehensive index of full-text books </label>
+        <input type="text" id="search" name="q" value="{{query}}">
+        <button type="submit">Search Now</button>
+    </form>
+    {{#each book}}
+
+    <div class="explore">
+        <!--<img src="{{this.picture}}" alt="{{this.title}}">-->
+        <p>{{this.title}} by {{this.author}} - {{genre}}</p>
+        <button>Add to library</button>
+    </div>
+
+    {{/each}}
 </main>
+{{/unless}}
