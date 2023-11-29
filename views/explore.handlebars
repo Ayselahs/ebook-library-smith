@@ -1,5 +1,5 @@
 {{> header}}
-{{#unless isLoggedIn}}
+
 <main>
     <h1>Explorer</h1>
     <form action="/search" method="get">
@@ -7,14 +7,36 @@
         <input type="text" id="search" name="q" value="{{query}}">
         <button type="submit">Search Now</button>
     </form>
-    {{#each book}}
+    <div></div>
+    {{#each books}}
 
     <div class="explore">
-        <!--<img src="{{this.picture}}" alt="{{this.title}}">-->
-        <p>{{this.title}} by {{this.author}} - {{genre}}</p>
-        <button>Add to library</button>
+        <img src="{{this.picture}}" alt="{{this.title}}">
+        <p><a href="{{link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{genre}}</p>
+        <button class="viewer" data-book-id="{{_id}}">Open in Viewer</button>
     </div>
 
     {{/each}}
 </main>
-{{/unless}}
+
+
+<script>
+    document.addEventListener('click', async (event) => {
+        if (event.target.classList.containts('library-book')) {
+            const bookId = event.target.getAttribute('data-book-id')
+            await addLibraryBook(bookId)
+            console.log('Adding book')
+        } //else if (event.target.classList.contains('viewer')) {
+        //const bookId = event.target.getAttribute('data-book-id')
+        //}
+    })
+
+    async function addLibraryBook(bookId) {
+        try {
+            const res = await axios.post(`/api/library-add/${bookId}`)
+            cosole.log('Book added to library')
+        } catch (err) {
+            console.log('Cannot add book', err)
+        }
+    }
+</script>

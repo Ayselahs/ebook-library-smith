@@ -1,5 +1,5 @@
 {{> header}}
-{{#unless isLoggedIn}}
+{{#if isLoggedIn}}
 <main>
     <h1>Favorites</h1>
     {{#if books.length}}
@@ -17,4 +17,4 @@
     {{/if}}
 
 </main>
-{{/unless}}
+{{/if}}

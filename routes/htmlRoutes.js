@@ -20,6 +20,13 @@ router.get("/private", checkAuth, ({ session: { isLoggedIn } }, res) => {
   res.render("protected", { isLoggedIn });
 });
 
+router.get("/library", ({ session: { isLoggedIn } }, res) => {
+  res.render("library", { isLoggedIn })
+})
+
+router.get("/explore", ({ session: { isLoggedIn } }, res) => {
+  res.render("explore", { isLoggedIn })
+})
 
 
 module.exports = router;
