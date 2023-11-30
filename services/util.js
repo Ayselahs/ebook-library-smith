@@ -4,16 +4,10 @@ const { Explore } = require('../models')
 const BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes'
 const API_KEY = process.env.API_KEY
 
-async function getBooks(query) {
+async function getBooks() {
     try {
         const { data } = await axios.get(
-            `${BOOKS_URL}?q=${query}`,
-            {
-                headers: {
-                    Authorization: `Token ${API_KEY}`
-                }
-            }
-
+            `${BOOKS_URL}?q=subject:fiction&key=${API_KEY}`
 
         )
         if (data.items && data.items.length > 0) {
@@ -37,23 +31,7 @@ async function getBooks(query) {
     }
 }
 
-async function addToLibrary(bookId) {
-    try {
-        const { books } = await Explore.findById(bookId)
 
-        if (!(books)) {
-            throw new Error('Books not found')
-        }
-
-        book.isInLibrary = true
-        await books.save()
-
-        return books
-    } catch (err) {
-        console.log(err)
-        throw new Error('Problem fetching books')
-    }
-}
 
 module.exports = {
     getBooks

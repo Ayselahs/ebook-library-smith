@@ -4,20 +4,18 @@ const { Library } = require("../models");
 const { getBooks } = require("../services/util")
 
 
-async function viewBooks(req, res, query) {
+async function viewBooks(req, res) {
     try {
 
         // Try to retrive from database
-        const displayedBooks = await getBooks(query)
-        console.log(query)
+        const displayedBooks = await getBooks()
+
         const databaseInfo = await Explore.insertMany(displayedBooks)
         console.log('Fetched books: ', displayedBooks)
-        console.log('Books info:', databaseInfo)
-        res.render('explore', { displayedBooks })
-
-
+        res.render('explore', { databaseInfo })
 
     } catch (err) {
+        console.log('This is the error:', err)
         res.status(500).send(err.message)
     }
 }
@@ -35,6 +33,7 @@ async function searchFun(req, res) {
         console.log('Search query', searchInput)
         res.render('searchResult', { searchResult, searchInput })
     } catch (err) {
+        console.log('This has an error:', err)
         res.status(500).send(err.message)
     }
 
@@ -58,6 +57,7 @@ async function addingLibrary(req, res) {
         res.redirect('/api/library')
 
     } catch (err) {
+        console.log('This may have error:', err)
         res.status(500).send(err.message)
     }
 }
