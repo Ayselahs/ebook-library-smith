@@ -14,6 +14,12 @@ const UserSchema = new Schema(
       minLength: 5,
       maxLength: 20,
     },
+    library: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Explore'
+      }
+    ]
   },
   {
     methods: {

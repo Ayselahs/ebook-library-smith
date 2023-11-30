@@ -3,6 +3,7 @@ const controllers = require("../controllers");
 const checkAuth = require("../middleware/auth");
 
 router.get("/", ({ session: { isLoggedIn } }, res) => {
+  console.log('Entered index')
   res.render("index", { isLoggedIn });
 });
 
@@ -20,13 +21,24 @@ router.get("/private", checkAuth, ({ session: { isLoggedIn } }, res) => {
   res.render("protected", { isLoggedIn });
 });
 
-router.get("/library", ({ session: { isLoggedIn } }, res) => {
-  res.render("library", { isLoggedIn })
-})
+router.get("/library", async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn
+  console.log(req.session.isLoggedIn)
+  if (!(isLoggedIn)) return res.redirect("/");
+  console.log('Session', isLoggedIn)
+  res.render("library", { isLoggedIn });
+});
 
-router.get("/explore", ({ session: { isLoggedIn } }, res) => {
-  res.render("explore", { isLoggedIn })
-})
+router.get("/explore", async (req, res) => {
+  const isLoggedIn = req.session.isLoggedIn
+  if (!(isLoggedIn)) return res.redirect("/");
+  console.log('Session', isLoggedIn)
+  res.render("explore", { isLoggedIn });
+});
+
+
+
+
 
 
 module.exports = router;

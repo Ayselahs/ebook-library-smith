@@ -1,19 +1,27 @@
 {{> header}}
-
 <main>
-    <h1>Libary</h1>
-    {{#if books.length}}
-    {{#each books}}
-    <div class="books">
-        <img src="{{this.bookId.picture}} alt=""{{this.bookId.title}}">
-        <p>{{this.bookId.title}} by {{this.bookId.author}}</p>
-        <button>Remove from library</button>
 
-    </div>
-    {{/each}}
+    <h1>Libary</h1>
+    {{#if addedBook.length}}
+    <ul>
+        {{#each addedBook}}
+        <li>
+            <img src="{{this.picture}}" alt="{{this.title}}">
+            <p><a href="{{this.link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
+        </li>
+        {{/each}}
+    </ul>
+
     {{else}}
     <p>Your library is empty. Start adding books!</p>
-    <a href="/api/explore" class="explore-btn">Explore Now?!</a>
+    <a href="/explore" class="explore-btn">Explore Now?!</a>
     {{/if}}
 
+
+
 </main>
+
+
+<script>
+
+</script>

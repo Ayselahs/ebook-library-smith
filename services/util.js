@@ -10,22 +10,26 @@ async function getBooks(query) {
             `${BOOKS_URL}?q=${query}`,
             {
                 headers: {
-                    Autorization: `Token ${API_KEY}`
+                    Authorization: `Token ${API_KEY}`
                 }
             }
 
 
         )
+        if (data.items && data.items.length > 0) {
+            return data.items.map(item => ({
+                title: item.volumeInfo.title,
+                authors: item.volumeInfo.authors || [],
+                picture: item.volumeInfo.imageLinks.thumbnail,
+                genre: item.volumeInfo.categories || [],
+                link: item.volumeInfo.infoLink
+            }))
 
-        const bookData = data.items.map(item => ({
-            title: item.volumeInfo.title,
-            authors: item.volumeInfo.authors || [],
-            picture: item.volumeInfo.imageLinks.thumbnail,
-            genre: item.volumeInfo.categories || [],
-            link: item.volumeInfo.infoLink
-        }))
-        await Explore.insertMany(bookData)
-        console.log('Database filled')
+
+        } else {
+            throw new Error('Books not found')
+        }
+
 
     } catch (err) {
         console.log(err)
@@ -52,5 +56,5 @@ async function addToLibrary(bookId) {
 }
 
 module.exports = {
-    getBooks,
+    getBooks
 }

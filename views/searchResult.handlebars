@@ -1,0 +1,25 @@
+{{> header}}
+{{#if isLoggedIn}}
+<main>
+    <h1>Search Results</h1>
+    <ul>
+        {{#each books}}
+        <li>
+            <div class="search-results">
+                <img src="{{picture}}" alt="{{title}}">
+                <p><a href="{{link}}" target="_blank">{{title}} </a> by {{authors}} - {{genre}}</p>
+                <button class="viewer" data-book-id="{{_id}}">Open in Viewer</button>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+
+
+
+
+
+
+
+
+</main>
+{{/if}}

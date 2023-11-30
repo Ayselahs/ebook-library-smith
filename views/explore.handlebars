@@ -2,41 +2,44 @@
 
 <main>
     <h1>Explorer</h1>
-    <form action="/search" method="get">
-        <label for="search">Search the Google's most comprehensive index of full-text books </label>
-        <input type="text" id="search" name="q" value="{{query}}">
+    <form action="/explore/search" method="get">
+        <label for="searchInput">Search the Google's most comprehensive index of full-text books </label>
+        <input type="text" id="searchInput" name="search">
         <button type="submit">Search Now</button>
     </form>
-    <div></div>
-    {{#each books}}
 
-    <div class="explore">
-        <img src="{{this.picture}}" alt="{{this.title}}">
-        <p><a href="{{link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{genre}}</p>
-        <button class="viewer" data-book-id="{{_id}}">Open in Viewer</button>
-    </div>
+    <ul>
+        {{#each displayedBooks}}
+        <li id="bookList">
+            <div class="explore">
+                <img src="{{picture}}" alt="{{title}}">
+                <p><a href="{{link}}" target="_blank">{{title}} </a> by {{authors}} - {{genre}}</p>
 
-    {{/each}}
+                <form action="/explore/add" method="post">
+                    <input type="hidden" name="title" value="{{title}}">
+                    <input type="hidden" name="authors" value="{{authors}}">
+                    <input type="hidden" name="genre" value="{{genre}}">
+                    <input type="hidden" name="picture" value="{{picture}}">
+                    <button type="submit">Add to Library</button>
+                </form>
+
+            </div>
+        </li>
+
+
+        {{/each}}
+    </ul>
+
 </main>
 
 
 <script>
-    document.addEventListener('click', async (event) => {
-        if (event.target.classList.containts('library-book')) {
-            const bookId = event.target.getAttribute('data-book-id')
-            await addLibraryBook(bookId)
-            console.log('Adding book')
-        } //else if (event.target.classList.contains('viewer')) {
-        //const bookId = event.target.getAttribute('data-book-id')
-        //}
+    const searchInput = document.getElementById('searchInput')
+    searchInput.addEventListener('input', () => {
+        const searchBar = searchInput.value.toLowerCase()
+        const filterSearch = { title }.filter(info =>
+            info.title.toLowerCase().includes(searchBar))
     })
 
-    async function addLibraryBook(bookId) {
-        try {
-            const res = await axios.post(`/api/library-add/${bookId}`)
-            cosole.log('Book added to library')
-        } catch (err) {
-            console.log('Cannot add book', err)
-        }
-    }
+
 </script>
