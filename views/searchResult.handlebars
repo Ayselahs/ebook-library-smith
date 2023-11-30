@@ -1,18 +1,27 @@
 {{> header}}
-{{#if isLoggedIn}}
+
 <main>
     <h1>Search Results</h1>
+    {{#if searchResult.length}}
     <ul>
-        {{#each books}}
+        {{#each searchResult}}
         <li>
             <div class="search-results">
                 <img src="{{picture}}" alt="{{title}}">
                 <p><a href="{{link}}" target="_blank">{{title}} </a> by {{authors}} - {{genre}}</p>
-                <button class="viewer" data-book-id="{{_id}}">Open in Viewer</button>
+                <form action="/api/explore/add" method="post">
+                    <input type="hidden" name="title" value="{{title}}">
+                    <input type="hidden" name="authors" value="{{authors}}">
+                    <input type="hidden" name="genre" value="{{genre}}">
+                    <input type="hidden" name="picture" value="{{picture}}">
+                    <button type="submit">Add to Library</button>
+                </form>
             </div>
         </li>
         {{/each}}
     </ul>
+    {{/if}}
+</main>
 
 
 
@@ -22,4 +31,3 @@
 
 
 </main>
-{{/if}}

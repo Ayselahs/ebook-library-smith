@@ -8,13 +8,16 @@
         <li>
             <img src="{{this.picture}}" alt="{{this.title}}">
             <p><a href="{{this.link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
+            <form action="/api/library/delete/{{this._id}}" method="post">
+                <button type="submit">Remove from Library</button>
+            </form>
         </li>
         {{/each}}
     </ul>
 
     {{else}}
     <p>Your library is empty. Start adding books!</p>
-    <a href="/explore" class="explore-btn">Explore Now?!</a>
+    <a href="/api/explore" class="explore-btn">Explore Now?!</a>
     {{/if}}
 
 

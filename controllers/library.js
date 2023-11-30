@@ -15,7 +15,7 @@ async function get(req, res) {
         res.status(500).send(err.message)
     }
 }
-
+/*
 async function update(req, res) {
     const bookId = req.params.bookId
     try {
@@ -29,17 +29,29 @@ async function update(req, res) {
         } else {
             const libraryEntry = new Library({ username, bookId, viewed: true })
             await new libraryEntry.save()
-            res.redirect('/library')
+            res.redirect('/api/library')
         }
     } catch (err) {
         res.status(500).send(err.message)
     }
-}
+}*/
 
-async function remove(req, res, next) {
-    const bookId = req.params.id
-    const library = await Explore.findByIdAndDelete(bookId)
-    return res.json(library).status(200)
+async function remove(req, res) {
+    const { bookId } = req.params
+    try {
+        await Explore.findByIdAndDelete(
+            {
+                _id: bookId
+            },
+            {
+                isInLibrary: false
+            }
+        )
+        res.redirect('/api/library')
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
+
 }
 
 module.exports = {

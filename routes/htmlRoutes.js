@@ -29,7 +29,7 @@ router.get("/library", async (req, res) => {
   res.render("library", { isLoggedIn });
 });
 
-router.get("/explore", async (req, res) => {
+router.get("/api/explore", async (req, res) => {
   const isLoggedIn = req.session.isLoggedIn
   if (!(isLoggedIn)) return res.redirect("/");
   console.log('Session', isLoggedIn)

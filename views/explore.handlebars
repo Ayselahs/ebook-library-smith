@@ -2,9 +2,9 @@
 
 <main>
     <h1>Explorer</h1>
-    <form action="/explore/search" method="get">
+    <form action="/api/explore/search" method="get">
         <label for="searchInput">Search the Google's most comprehensive index of full-text books </label>
-        <input type="text" id="searchInput" name="search">
+        <input type="text" id="searchInput" name="q" required>
         <button type="submit">Search Now</button>
     </form>
 
@@ -15,7 +15,7 @@
                 <img src="{{picture}}" alt="{{title}}">
                 <p><a href="{{link}}" target="_blank">{{title}} </a> by {{authors}} - {{genre}}</p>
 
-                <form action="/explore/add" method="post">
+                <form action="/api/explore/add" method="post">
                     <input type="hidden" name="title" value="{{title}}">
                     <input type="hidden" name="authors" value="{{authors}}">
                     <input type="hidden" name="genre" value="{{genre}}">
@@ -31,15 +31,3 @@
     </ul>
 
 </main>
-
-
-<script>
-    const searchInput = document.getElementById('searchInput')
-    searchInput.addEventListener('input', () => {
-        const searchBar = searchInput.value.toLowerCase()
-        const filterSearch = { title }.filter(info =>
-            info.title.toLowerCase().includes(searchBar))
-    })
-
-
-</script>

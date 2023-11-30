@@ -6,7 +6,7 @@ const { getBooks } = require("../services/util")
 
 async function viewBooks(req, res, query) {
     try {
-        
+
         // Try to retrive from database
         const displayedBooks = await getBooks(query)
         console.log(query)
@@ -14,7 +14,7 @@ async function viewBooks(req, res, query) {
         console.log('Fetched books: ', displayedBooks)
         console.log('Books info:', databaseInfo)
         res.render('explore', { displayedBooks })
-        
+
 
 
     } catch (err) {
@@ -22,16 +22,21 @@ async function viewBooks(req, res, query) {
     }
 }
 
-async function searchFun(query) {
+async function searchFun(req, res) {
+    const searchInput = req.query.q
+    console.log('Search query', searchInput)
+    try {
+        if (!(searchInput)) {
+            return res.render('searchResult', { searchResult: [] })
+        }
 
-    //const searchInput = document.getElementById('searchInput').value
-    const info = await fetch(`?title=${searchInput}`)
-    const searchedBooks = await info.json()
-    const viewVar = { displayed: searchedBooks }
-    await viewBooks(null, null, searchInput)
-    res.render('searchResult', { searchedBooks })
-
-
+        const searchResult = await Explore.find({ title: { $regex: new RegExp(searchInput, 'i') } }).lean()
+        console.log('Searching for:', searchResult)
+        console.log('Search query', searchInput)
+        res.render('searchResult', { searchResult, searchInput })
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 
 }
 
@@ -50,20 +55,13 @@ async function addingLibrary(req, res) {
         await addBook.save()
         console.log("Add to library:", addBook)
 
-        res.redirect('/library')
+        res.redirect('/api/library')
 
     } catch (err) {
         res.status(500).send(err.message)
     }
 }
 
-/* 
-async function remove(req, res, next) {
-    const bookId = req.params.bookId
-    const favorite = await Explore.findByIdAndDelete(bookId)
-    return res.json(favorite).status(200)
-}
-*/
 
 
 module.exports = {

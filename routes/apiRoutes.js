@@ -14,23 +14,15 @@ router.post("/signup", controllers.user.create);
 // Book API
 //router.get("/favorites", controllers.favorites.get)
 router.get("/library", controllers.library.get)
-router.get("/api/explore", controllers.explore.viewBooks)
-router.get("/explore/search", async (req, res) => {
-    try {
-        const { title } = req.query
-        console.log(req.query)
-        return { title }
-    } catch (err) {
-        res.status(500).send(err.message)
-    }
-})
+router.get("/explore", controllers.explore.viewBooks)
+router.get("/explore/search", controllers.explore.searchFun)
 
 // Explore
 
 //router.get("/search", controllers.explore.searchBooks)
 //router.get("/search/searchResult", controllers.searchResults)
 router.post("/explore/add", controllers.explore.addingLibrary)
-router.post("/library/delete/:id", controllers.library.remove)
+router.post("/library/delete/:bookId", controllers.library.remove)
 
 //router.get('/search', controllers.explore.getSearched)
 
