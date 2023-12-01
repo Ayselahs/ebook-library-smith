@@ -41,16 +41,23 @@ async function searchFun(req, res) {
             return res.render('searchResult', { searchResult: [] })
         }
         // compare the searched text to any book titles
-        const searchResult = await Explore.find({ title: { $regex: new RegExp(searchInput, 'i') } }).lean()
+        const searchQuery = {
+            $or: [
+                { title: { $regex: new RegExp(searchInput, 'i') }, }
+            ]
+        }
+
+        const searchResult = await Explore.find(searchQuery).lean()
         console.log('Searching for:', searchResult)
         console.log('Search query', searchInput)
-        res.render('searchResult', { searchResult, searchInput, isLoggedIn })
+        res.render('searchResult', { searchResult, isLoggedIn })
     } catch (err) {
         console.log('This has an error:', err)
         res.status(500).send(err.message)
     }
 
 }
+
 
 
 async function addingLibrary(req, res) {
@@ -69,7 +76,7 @@ async function addingLibrary(req, res) {
         // save the new book
         await addBook.save()
         // associate it with the logged username
-        const user = await User.findOne({ username })
+        const user = await User.findOne({ username }).lean()
         if (user) {
             // if the username is logged push the book to library
             user.library.push(addBook._id)
