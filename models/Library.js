@@ -2,14 +2,13 @@ const { Schema, model, models } = require("mongoose");
 
 const librarySchema = new Schema({
     username: {
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.String,
         ref: 'User',
         required: true
     },
-    bookId: {
+    book: {
         type: Schema.Types.ObjectId,
-        ref: 'Book',
-        required: true
+        ref: 'Explore',
     },
     viewed: {
         type: Boolean,

@@ -42,9 +42,11 @@ main form {
 h1 {
   font-size: calc(var(--font-size) * 2.25);
 }
+
 h2 {
   font-size: calc(var(--font-size) * 2);
 }
+
 h3 {
   font-size: calc(var(--font-size) * 1.5);
 }
@@ -53,6 +55,7 @@ a {
   color: var(--secondary-light);
   transition: color 200ms;
 }
+
 a:hover,
 a:focus {
   color: var(--secondary);
@@ -66,6 +69,7 @@ button.btn {
   cursor: pointer;
   transition: background-color 200ms;
 }
+
 button.btn-text {
   border: none;
   background-color: transparent;
@@ -78,10 +82,12 @@ button.btn:hover,
 button.btn:focus {
   background-color: var(--secondary);
 }
+
 button.btn-text:hover,
 button.btn-text:focus {
   color: var(--secondary);
 }
+
 header {
   display: flex;
   flex-wrap: wrap;
@@ -90,9 +96,11 @@ header {
   background-color: var(--black);
   margin-bottom: calc(var(--space) * 6);
 }
+
 header a {
   margin: var(--space);
 }
+
 header .site-logo {
   font-size: calc(var(--font-size) * 1.5);
   margin: var(--space);
@@ -130,9 +138,11 @@ header .site-logo {
     font-size: calc(var(--font-size) * 1.25);
     margin: 0;
   }
+
   header .site-logo {
     font-size: var(--font-size);
   }
+
   header a {
     margin: calc(var(--space) / 2);
   }

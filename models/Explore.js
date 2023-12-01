@@ -11,7 +11,7 @@ const exploreSchema = new Schema({
     isInLibrary: {
         type: Boolean,
         default: false
-    }
+    },
 })
 
 module.exports = models.Explore || model('Explore', exploreSchema)

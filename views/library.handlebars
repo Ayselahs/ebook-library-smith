@@ -2,15 +2,17 @@
 <main>
 
     <h1>Libary</h1>
-    {{#if addedBook.length}}
+    {{#if usersBooks.length}}
     <ul>
-        {{#each addedBook}}
+        {{#each usersBooks}}
         <li>
+
             <img src="{{this.picture}}" alt="{{this.title}}">
-            <p><a href="{{this.link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
-            <form action="/library/delete/{{this._id}}" method="post">
+            <p><a href="#" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
+            <form action="/library/delete/{{_id}}" method="post">
                 <button type="submit">Remove from Library</button>
             </form>
+
         </li>
         {{/each}}
     </ul>
@@ -23,8 +25,3 @@
 
 
 </main>
-
-
-<script>
-
-</script>

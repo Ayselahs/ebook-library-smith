@@ -21,29 +21,15 @@ router.get("/private", checkAuth, ({ session: { isLoggedIn } }, res) => {
   res.render("protected", { isLoggedIn });
 });
 
-router.get("/library", async (req, res) => {
-  const isLoggedIn = req.session.isLoggedIn
-  console.log(req.session.isLoggedIn)
-  if (!(isLoggedIn)) return res.redirect("/");
-  console.log('Session', isLoggedIn)
-  res.render("library", { isLoggedIn });
-});
+router.get("/library", checkAuth, controllers.library.get)
+router.get("/explore", checkAuth, controllers.explore.viewBooks)
+router.get("/explore/search", controllers.explore.searchFun)
 
-router.get("/explore", checkAuth, async (req, res) => {
-  const isLoggedIn = req.session.isLoggedIn
-  console.log(req.session.isLoggedIn)
-  if (!(isLoggedIn)) return res.redirect("/");
-  const { databaseInfo } = await controllers.explore.viewBooks()
-  res.render("explore", { checkAuth: true, databaseInfo })
+// Explore
 
 
-})
-/*router.get("/explore", async (req, res) => {
-  const isLoggedIn = req.session.isLoggedIn
-  if (!(isLoggedIn)) return res.redirect("/");
-  console.log('Session', isLoggedIn)
-  res.render("explore", { isLoggedIn });
-});*/
+router.post("/explore/add", checkAuth, controllers.explore.addingLibrary)
+router.post("/library/delete/:bookId", checkAuth, controllers.library.remove)
 
 
 

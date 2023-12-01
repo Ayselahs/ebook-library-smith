@@ -12,7 +12,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
       minLength: 5,
-      maxLength: 20,
+      maxLength: 60,
     },
     library: [
       {
@@ -20,6 +20,7 @@ const UserSchema = new Schema(
         ref: 'Explore'
       }
     ]
+
   },
   {
     methods: {

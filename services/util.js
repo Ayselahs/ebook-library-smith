@@ -7,7 +7,7 @@ const API_KEY = process.env.API_KEY
 async function getBooks() {
     try {
         const { data } = await axios.get(
-            `${BOOKS_URL}?q=subject:fiction&key=${API_KEY}`
+            `${BOOKS_URL}?q=subject:fiction`
 
         )
         if (data.items && data.items.length > 0) {

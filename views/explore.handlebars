@@ -9,17 +9,18 @@
     </form>
 
     <ul>
-        {{#each databaseInfo}}
-        <li id="bookList">
-            <div class="explore">
-                <img src="{{picture}}" alt="{{title}}">
-                <p><a href="{{link}}" target="_blank">{{title}} </a> by {{authors}} - {{genre}}</p>
+        {{#each displayedBooks}}
+        <li>
+            <div>
+                {{log dbInfo}}
+                <img src="{{this.picture}}" alt="{{this.title}}">
+                <p><a href="{{this.link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
 
                 <form action="/explore/add" method="post">
-                    <input type="hidden" name="title" value="{{title}}">
-                    <input type="hidden" name="authors" value="{{authors}}">
-                    <input type="hidden" name="genre" value="{{genre}}">
-                    <input type="hidden" name="picture" value="{{picture}}">
+                    <input type="hidden" name="title" value="{{this.title}}">
+                    <input type="hidden" name="authors" value="{{this.authors}}">
+                    <input type="hidden" name="genre" value="{{this.genre}}">
+                    <input type="hidden" name="picture" value="{{this.picture}}">
                     <button type="submit">Add to Library</button>
                 </form>
 
