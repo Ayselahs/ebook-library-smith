@@ -3,7 +3,7 @@ On this platform, you are offered a collection of books that you can browse and 
 
 ---
 ## Site View
-![Image](public/Screenshot%2023-12-01%143532.jpg?raw=true)
+![Image](public/Screenshot%202023-12-01%20143532.jpg?raw=true)
 
 ---
 ## Prerequisites
