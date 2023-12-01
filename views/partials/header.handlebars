@@ -1,21 +1,21 @@
 <header>
   {{#if isLoggedIn}}
-  <nav class="navbar p-0 py-0 fixed-top">
+  <nav class="navbar   my-0 fixed-top">
     <div class="container">
-      <a class="site-logo navbar-brand" href="/">
+      <a class="site-logo navbar-brand  py-0 my-0" href="/">
         E-Book Library
       </a>
-      <a href="/library" class="btn">Library</a>
-      <a href="/explore" class="btn">Explore</a>
-      <a href="/api/logout" class="btn">Logout</a>
+      <a href="/library" class="btn   my-0">Library</a>
+      <a href="/explore" class="btn   my-0">Explore</a>
+      <a href="/api/logout" class="btn   my-0">Logout</a>
     </div>
   </nav>
 
   {{else}}
-  <nav class="navbar fixed-top">
+  <nav class="navbar p-0 py-0 my-0 fixed-top">
     <div class="container">
       <a class="site-logo navbar-brand" href="/">
-        Auth Example! 🕵️
+        E-Book Library
       </a>
       <a href="/login" class="btn">Login</a>
       <a href="/signup" class="btn">Sign Up</a>

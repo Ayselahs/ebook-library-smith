@@ -1,9 +1,9 @@
 # Welcome to my E-Book Library
-On this platform your offered a collection of books that you can browse and search through. With a simple click you can add these books to your personal libray so you never lose sight of them. 
+On this platform, you are offered a collection of books that you can browse and search through. With a simple click, you can add these books to your personal libray so you never lose sight of them. With all of these features, you can easily organize your reading list and keep track of the books you want to read. 
 
 ---
 ## Site View
-![Image] (Screenshot 2023-12-01 143532.jpg)
+![Image] (public/Screenshot 2023-12-01 143532.jpg?raw=true)
 
 ---
 ## Prerequisites
