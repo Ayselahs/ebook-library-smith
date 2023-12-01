@@ -1,7 +1,9 @@
 :root {
-  --black: #020303;
-  --dark-grey: #171c1c;
-  --light-grey: #a7b9b7;
+  --russet-brown: #733232;
+  --capocollo: #D95252;
+  --english-walnut: #402721;
+  --perrigloss-tan: #D9AB9A;
+  --mocha-mouse: #A67968;
   --primary: #5cc1bb;
   --primary-dark: #41aaa3;
   --secondary: hsl(15deg 100% 62%);
@@ -13,7 +15,7 @@
 
 body {
   background-color: var(--primary-dark);
-  color: var(--text-color);
+  color: var(--perrigloss-tan);
   font-size: var(--font-size);
   line-height: 1.5;
   padding: 0;
@@ -22,6 +24,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: url(zaini-izzuddin-55btQzyDiO8-unsplash.jpg);
+  background-size: cover;
 }
 
 main {
@@ -29,9 +33,10 @@ main {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  background-color: var(--black);
+  background-color: var(--english-walnut);
   padding: var(--space) calc(var(--space) * 3);
   text-align: center;
+  color: var(--text-color);
 }
 
 main,
@@ -41,6 +46,7 @@ main form {
 
 h1 {
   font-size: calc(var(--font-size) * 2.25);
+
 }
 
 h2 {
@@ -52,7 +58,7 @@ h3 {
 }
 
 a {
-  color: var(--secondary-light);
+  color: var(--capocollo);
   transition: color 200ms;
 }
 
@@ -64,7 +70,7 @@ a:focus {
 button.btn {
   border: var(--text-color);
   border-radius: 4px;
-  background-color: var(--secondary-light);
+  background-color: var(--capocollo);
   padding: calc(var(--space) * 0.75) calc(var(--space) * 2);
   cursor: pointer;
   transition: background-color 200ms;
@@ -93,7 +99,7 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--black);
+  background-color: var(--capocollo);
   margin-bottom: calc(var(--space) * 6);
 }
 
@@ -133,6 +139,17 @@ header .site-logo {
   padding: calc(var(--space) * 0.5) calc(var(--space) * 1);
 }
 
+/* My CSS */
+.card-img-top {
+  height: 50px;
+  object-fit: cover;
+}
+
+.navbar {
+  background-color: var(--perrigloss-tan);
+}
+
+
 @media screen and (max-width: 700px) {
   .site-logo {
     font-size: calc(var(--font-size) * 1.25);
@@ -141,6 +158,7 @@ header .site-logo {
 
   header .site-logo {
     font-size: var(--font-size);
+
   }
 
   header a {

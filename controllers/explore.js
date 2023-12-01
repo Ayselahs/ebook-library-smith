@@ -5,15 +5,18 @@ const { getBooks } = require("../services/util")
 
 
 async function viewBooks(req, res) {
+    // check for username and if logged
     const username = req.session.username
     const isLoggedIn = req.session.isLoggedIn
     try {
 
+        // testing
         console.log('Username explore', username)
         console.log('Reached')
         // Try to retrive from database
         const displayedBooks = await getBooks()
         console.log('Reached here')
+        // render any books asociated with the loggedin username
         res.render("explore", { displayedBooks, username, isLoggedIn })
         //const databaseInfo = await Explore.insertMany(displayedBooks)
 
@@ -28,6 +31,7 @@ async function viewBooks(req, res) {
 }
 
 async function searchFun(req, res) {
+    // make the searchInput become query
     const searchInput = req.query.q
     const username = req.session.username
     const isLoggedIn = req.session.isLoggedIn
@@ -36,7 +40,7 @@ async function searchFun(req, res) {
         if (!(searchInput)) {
             return res.render('searchResult', { searchResult: [] })
         }
-
+        // compare the searched text to any book titles
         const searchResult = await Explore.find({ title: { $regex: new RegExp(searchInput, 'i') } }).lean()
         console.log('Searching for:', searchResult)
         console.log('Search query', searchInput)
@@ -54,6 +58,7 @@ async function addingLibrary(req, res) {
     const username = req.session.username
     try {
         console.log(req.body)
+        // create the book to add by the schema of the book adding
         const addBook = new Explore({
             title,
             authors,
@@ -61,9 +66,12 @@ async function addingLibrary(req, res) {
             picture,
             isInLibrary: true,
         })
+        // save the new book
         await addBook.save()
+        // associate it with the logged username
         const user = await User.findOne({ username })
         if (user) {
+            // if the username is logged push the book to library
             user.library.push(addBook._id)
             await user.save()
             console.log("Add to library:", addBook)

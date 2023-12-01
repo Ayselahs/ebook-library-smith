@@ -1,14 +1,28 @@
 <header>
-  <a class="site-logo" href="/">
-    Auth Example! 🕵️
-  </a>
   {{#if isLoggedIn}}
-  <a href="/library">Library</a>
-  <a href="/explore">Explore</a>
-  <a href="/api/logout">Logout</a>
+  <nav class="navbar fixed-top">
+    <div class="container">
+      <a class="site-logo navbar-brand" href="/">
+        E-Book Library
+      </a>
+      <a href="/library" class="btn">Library</a>
+      <a href="/explore" class="btn">Explore</a>
+      <a href="/api/logout" class="btn">Logout</a>
+    </div>
+  </nav>
+
   {{else}}
-  <a href="/login">Login</a>
-  <a href="/signup">Sign Up</a>
+  <nav class="navbar fixed-top">
+    <div class="container">
+      <a class="site-logo navbar-brand" href="/">
+        Auth Example! 🕵️
+      </a>
+      <a href="/login" class="btn">Login</a>
+      <a href="/signup" class="btn">Sign Up</a>
+
+    </div>
+  </nav>
+
 
   {{/if}}
 </header>

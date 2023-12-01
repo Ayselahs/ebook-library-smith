@@ -1,19 +1,31 @@
 {{> header}}
+<br />
 <main>
 
     <h1>Libary</h1>
     {{#if usersBooks.length}}
     <ul>
         {{#each usersBooks}}
-        <li>
+        <div class="card mb-3" style="max-width: 350px">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{this.picture}}" class="img-fluid rounded-start" alt="{{this.title}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="{{this.link}}" target="_blank">{{this.title}} </a></h6>
+                        <p class="card-text">by {{this.authors}} - {{this.genre}}</p>
+                        <div class="text-right">
+                            <form action="/library/delete/{{_id}}" method="post">
+                                <button type="submit" class="btn btn-success">Remove from Library</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-            <img src="{{this.picture}}" alt="{{this.title}}">
-            <p><a href="#" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
-            <form action="/library/delete/{{_id}}" method="post">
-                <button type="submit">Remove from Library</button>
-            </form>
+            </div>
+        </div>
 
-        </li>
         {{/each}}
     </ul>
 

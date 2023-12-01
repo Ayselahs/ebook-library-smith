@@ -18,6 +18,7 @@ async function login(req, res) {
       return res.redirect("/login?error=username or password is incorrect");
 
     req.session.isLoggedIn = true;
+    // To get the user across all loggedIn pages I need the username
     req.session.username = user.username
     console.log('user', username)
     req.session.save(() => res.redirect("/library"));

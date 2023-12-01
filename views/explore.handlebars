@@ -1,31 +1,48 @@
 {{> header}}
-
-<main>
+<br />
+<main class="container">
     <h1>Explorer</h1>
     <form action="/explore/search" method="get">
-        <label for="searchInput">Search the Google's most comprehensive index of full-text books </label>
-        <input type="text" id="searchInput" name="q" required>
-        <button type="submit">Search Now</button>
+        <div class="input-group input-group-sm b-3 justify-content-center">
+            <label class="form-label" for="searchInput"> </label>
+            <input class="form-control" type="text" style="max-width: 350px" id="searchInput" name="q"
+                aria-label="Search here" aria-required="true">
+            <button class="btn btn-success" id="button-addon2" type="submit">Search Now</button>
+        </div>
+
     </form>
+    <div>
+        <br />
+    </div>
 
-    <ul>
+    <ul class="row justify-content-center">
         {{#each displayedBooks}}
-        <li>
-            <div>
-                {{log dbInfo}}
-                <img src="{{this.picture}}" alt="{{this.title}}">
-                <p><a href="{{this.link}}" target="_blank">{{this.title}} </a> by {{this.authors}} - {{this.genre}}</p>
 
-                <form action="/explore/add" method="post">
-                    <input type="hidden" name="title" value="{{this.title}}">
-                    <input type="hidden" name="authors" value="{{this.authors}}">
-                    <input type="hidden" name="genre" value="{{this.genre}}">
-                    <input type="hidden" name="picture" value="{{this.picture}}">
-                    <button type="submit">Add to Library</button>
-                </form>
+        <div class="card mb-3" style="max-width: 540px">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{this.picture}}" class="img-fluid rounded-start" alt="{{this.title}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="{{this.link}}" target="_blank">{{this.title}} </a></h6>
+                        <p class="card-text">by {{this.authors}} - {{this.genre}}</p>
+                        <div class="text-right">
+                            <form action="/explore/add" method="post">
+                                <input type="hidden" name="title" value="{{this.title}}">
+                                <input type="hidden" name="authors" value="{{this.authors}}">
+                                <input type="hidden" name="genre" value="{{this.genre}}">
+                                <input type="hidden" name="picture" value="{{this.picture}}">
+                                <button class="btn btn-success" type="submit">Add to Library</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-        </li>
+        </div>
+        <br />
+
 
 
         {{/each}}

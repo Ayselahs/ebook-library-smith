@@ -1,23 +1,35 @@
 {{> header}}
-
+<br />
 <main>
     <h1>Search Results</h1>
     {{#if searchResult.length}}
     <ul>
         {{#each searchResult}}
-        <li>
-            <div class="search-results">
-                <img src="{{picture}}" alt="{{title}}">
-                <p><a href="{{link}}" target="_blank">{{title}} </a> by {{authors}} - {{genre}}</p>
-                <form action="/explore/add" method="post">
-                    <input type="hidden" name="title" value="{{title}}">
-                    <input type="hidden" name="authors" value="{{authors}}">
-                    <input type="hidden" name="genre" value="{{genre}}">
-                    <input type="hidden" name="picture" value="{{picture}}">
-                    <button type="submit">Add to Library</button>
-                </form>
+        <div class="card mb-3 search-results" style="max-width: 540px">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{this.picture}}" class="img-fluid rounded-start" alt="{{this.title}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="card-title"><a href="{{this.link}}" target="_blank">{{this.title}} </a></h6>
+                        <p class="card-text">by {{this.authors}} - {{this.genre}}</p>
+                        <div class="text-right">
+                            <form action="/explore/add" method="post">
+                                <input type="hidden" name="title" value="{{this.title}}">
+                                <input type="hidden" name="authors" value="{{this.authors}}">
+                                <input type="hidden" name="genre" value="{{this.genre}}">
+                                <input type="hidden" name="picture" value="{{this.picture}}">
+                                <button class="btn btn-success" type="submit">Add to Library</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </li>
+        </div>
+
+
         {{/each}}
     </ul>
     {{/if}}
