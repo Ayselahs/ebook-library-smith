@@ -1,6 +1,20 @@
 # Welcome to my E-Book Library
 On this platform your offered a collection of books that you can browse and search through. With a simple click you can add these books to your personal libray so you never lose sight of them. 
 
+---
+## Site View
+![Image] (public/Screenshot 2023-12-01 143532.jpg)
+
+---
+## Prerequisites
+- Theres are the programs used for this site that you might want to know beforehand.
+- Node
+- Express
+- MongoDB
+- Handlebars
+- Bootstrap
+
+---
 ## Instalation
 Here's how you can get it!
 
@@ -20,7 +34,8 @@ Then run the program
 `npm run dev`
 
 You can use the deployed app made with Heroku
-`Heroku`
+`Heroku: https://ebook-library-smith-f48d87cf6ed7.herokuapp.com/`
 
+---
 ## License
 [MIT] (https://choosealicense.com/licenses/mit/)
