@@ -3,11 +3,11 @@ On this platform your offered a collection of books that you can browse and sear
 
 ---
 ## Site View
-![Image] (public/Screenshot 2023-12-01 143532.jpg)
+![Image] (Screenshot 2023-12-01 143532.jpg)
 
 ---
 ## Prerequisites
-- Theres are the programs used for this site that you might want to know beforehand.
+- Theses are the programs used for this site that you might want to know beforehand.
 - Node
 - Express
 - MongoDB

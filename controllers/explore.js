@@ -76,7 +76,7 @@ async function addingLibrary(req, res) {
         // save the new book
         await addBook.save()
         // associate it with the logged username
-        const user = await User.findOne({ username }).lean()
+        const user = await User.findOne({ username })
         if (user) {
             // if the username is logged push the book to library
             user.library.push(addBook._id)
